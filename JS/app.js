@@ -160,6 +160,11 @@ function mostrarCarrito() {
   });
 
   totalElement.textContent = `$${total.toFixed(2)}`;
+  if (carrito.length>0){
+    document.getElementById('checkout').disabled=false;
+  } else {
+    document.getElementById('checkout').disabled=true;
+  }
 }
 
 
