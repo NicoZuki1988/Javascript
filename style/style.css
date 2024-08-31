@@ -29,6 +29,22 @@ header {
     color: white;
 }
 
+.logout-icon {
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logout-icon i {
+    font-size: 1.5rem;
+}
+
+.d-flex .logout-icon {
+    margin-left: 15px;
+}
+
 .cart-count {
     position: absolute;
     top: -10px;
@@ -57,8 +73,7 @@ header {
 }
 
 .product-card img {
-    height: 200px;
-    object-fit: cover;
+    height: 250px;
 }
 
 .modalSize{

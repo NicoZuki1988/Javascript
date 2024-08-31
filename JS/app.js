@@ -1,45 +1,43 @@
 
+let productos = new Array();
+
 // Array de productos
-const productos = [
-  { id: 1, nombre: "Arroz", precio: 4000.00, imageUrl: "https://via.placeholder.com/300x200/007bff/ffffff?text=Arroz Gallo" },
-  { id: 2, nombre: "Fideos", precio: 3200.00, imageUrl: "https://via.placeholder.com/300x200/28a745/ffffff?text=Fideos tirabuzón" },
-  { id: 3, nombre: "Papas", precio: 1500.00, imageUrl: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Papas Blancas" },
-  { id: 4, nombre: "Banana", precio: 1800.00, imageUrl: "https://via.placeholder.com/300x200/007bff/ffffff?text=Banana" },
-  { id: 5, nombre: "Salchichas", precio: 3000.00, imageUrl: "https://via.placeholder.com/300x200/28a745/ffffff?text=Salchichas" },
-  { id: 6, nombre: "Tomate", precio: 900.00, imageUrl: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Tomate perita" }
-
-];
-
 //Clase para crear el objeto producto del carrito
-class ProductoCarrito{
-  constructor(id = 0, nombre = '', precio = 0, cantidad = 1){
-    this.id=id;
-    this.nombre=nombre;
-    this.precio=precio;
+class ProductoCarrito {
+  constructor(id = 0, nombre = '', precio = 0, cantidad = 1) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
     this.cantidad = cantidad;
   }
 
-  calcularPrecioTotal (){
-    return (this.precio*this.cantidad).toFixed(2);
-  } 
+  calcularPrecioTotal() {
+    return (this.precio * this.cantidad).toFixed(2);
+  }
 }
 
-const carritoGuardado = localStorage.getItem('carrito') != null ? JSON.parse(localStorage.getItem('carrito')) : new Array();
+const usuarioIniciado = localStorage.getItem('user');
+if (!usuarioIniciado) { window.location.href = "../index.html" }
+const user = JSON.parse(usuarioIniciado);
+document.getElementById("bienvenida").textContent = `Hola, ${user.nombre}`;
+const carritoGuardado = localStorage.getItem(`${user.usuario}-carrito`) != null ? JSON.parse(localStorage.getItem(`${user.usuario}-carrito`)) : new Array();
 let carrito = carritoGuardado.map(item => new ProductoCarrito(item.id, item.nombre, item.precio, item.cantidad));
 
 actualizarContadorCarrito();
 const elementoContadorCarrito = document.getElementById('contadorCarrito');
 
 // Función para renderizar productos
-function renderizarProductos() {
-  const productList = document.getElementById('product-list');
-  productList.innerHTML = ''; // Limpiar la lista de productos
+async function renderizarProductos() {
+  try {
+    productos = await buscarProductos();
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = ''; // Limpiar la lista de productos
 
-  productos.forEach(producto => {
-    const productHTML = `
+    productos.forEach(producto => {
+      const productHTML = `
                 <div class="col-md-4">
                     <div class="card product-card">
-                        <img src="${producto.imageUrl}" class="card-img-top" alt="${producto.nombre}">
+                        <img src="${producto.imageURL}" class="card-img-top" alt="${producto.nombre}">
                         <div class="card-body">
                             <h5 class="card-title">${producto.nombre}</h5>
                             <p class="card-text">$${producto.precio.toFixed(2)}</p>
@@ -51,9 +49,12 @@ function renderizarProductos() {
                     </div>
                 </div>
             `;
-    productList.innerHTML += productHTML;
+      productList.innerHTML += productHTML;
 
-  });
+    });
+  } catch (error) {
+    console.error("Error: " + error);
+  }
 
   addEventListeners();
 }
@@ -62,6 +63,8 @@ function renderizarProductos() {
 function addEventListeners() {
   const botonesAgregarCarrito = document.querySelectorAll('.add-to-cart');
   const botonBorrarCarrito = document.getElementById('clear-cart');
+  const botonCerrarSesion = document.getElementById('logout-btn');
+
 
 
   botonesAgregarCarrito.forEach(button => {
@@ -75,6 +78,8 @@ function addEventListeners() {
   });
 
   botonBorrarCarrito.addEventListener('click', borrarCarrito);
+  botonCerrarSesion.addEventListener('click', cerrarSesion);
+
 
 }
 
@@ -92,10 +97,10 @@ function agregarAlCarrito(productoId, cantidad) {
       carrito.push(new ProductoCarrito(productoId, producto.nombre, producto.precio, cantidad));
     }
     new bootstrap.Modal(document.getElementById('addProdModal')).show(); // Muestra el modal de confirmación
-    document.getElementById('addProdLeyend').textContent=`Se han agregado ${cantidad} ${producto.nombre}`;
+    document.getElementById('addProdLeyend').textContent = `Se han agregado ${cantidad} ${producto.nombre}`;
     actualizarContadorCarrito();
   }
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem(`${user.usuario}-carrito`, JSON.stringify(carrito));
 }
 
 // Función para actualizar el contador del carrito
@@ -119,7 +124,7 @@ function borrarCarrito() {
   carrito = [];
   actualizarContadorCarrito();
   resetearInputs();
-  localStorage.removeItem('carrito');
+  localStorage.removeItem(`${user.usuario}-carrito`);
 }
 
 // Función para procesar el pago
@@ -135,7 +140,7 @@ function procederAlPago() {
 function resetearInputs() {
   productos.forEach(producto => {
     let cant = document.getElementById(`cantidad-${producto.id}`);
-    cant.value=1;
+    cant.value = 1;
   });
 }
 
@@ -160,12 +165,29 @@ function mostrarCarrito() {
   });
 
   totalElement.textContent = `$${total.toFixed(2)}`;
-  if (carrito.length>0){
-    document.getElementById('checkout').disabled=false;
+  if (carrito.length > 0) {
+    document.getElementById('checkout').disabled = false;
   } else {
-    document.getElementById('checkout').disabled=true;
+    document.getElementById('checkout').disabled = true;
   }
 }
+
+function cerrarSesion() {
+  localStorage.removeItem("user");
+  window.location.href = "../index.html";
+}
+
+async function buscarProductos(usuario) {
+  try {
+    const resp = await fetch("../JSON/productos.json");
+    const prods = await resp.json();
+    return prods;
+  } catch (error) {
+    console.error(error);
+    alert("Se ha producido un error");
+  }
+}
+
 
 
 // Llamada inicial para renderizar los productos en la página

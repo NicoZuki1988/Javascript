@@ -4,113 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrito de Compras</title>
+  <title>Inicio de Sesión</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="./style/style.css">
-
 </head>
 
-<body>
-  <!-- Encabezado -->
-  <header class="container-fluid">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3">Carrito de compras en línea</h1>
-      <div class="d-flex align-items-center">
-        <a href="#" class="cart-icon text-white" data-bs-toggle="modal" data-bs-target="#cartModal">
-          <i class="bi bi-cart"></i>
-          <span id='contadorCarrito' class="cart-count">0</span>
-        </a>
-        <a href="#" class="trash-icon" id="clear-cart">
-          <i class="bi bi-trash"></i>
-        </a>
-      </div>
-    </div>
+<body class="bg-light">
+
+  <header class="bg-primary text-white text-center py-3 mb-4">
+    <h1>Carrito de Compras</h1>
   </header>
 
-  <!-- Lista de Productos -->
-  <div class="container-fluid main-content py-4">
-    <div class="container">
-      <div class="row" id="product-list">
-        <!-- Productos dinámicamente generados irán aquí -->
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ul id="cart-items" class="list-group mb-3">
-            <!-- Productos en el carrito se mostrarán aquí -->
-          </ul>
-          <div class="d-flex justify-content-between">
-            <strong>Total:</strong>
-            <span id="cart-total">$0.00</span>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>Inicio de Sesión</h4>
           </div>
+          <div class="card-body">
+            <!-- El action aquí apunta a la página del carrito -->
+            <form id="loginForm" novalidate>
+              <div class="mb-3">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                <div class="invalid-feedback" id="usernameError"></div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="invalid-feedback" id="passwordError"></div>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <!-- Botón para redirigir a la página de registro -->
+            <button onclick="window.location.href='./pages/registro.html'" class="btn btn-link">¿No tenés cuenta? Registrate</button>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" id="checkout" class="btn btn-primary">Proceder al Pago</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="addProdModal" tabindex="-1" aria-labelledby="addProdLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addProdLabel">Producto/s agregado al carrito</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <i class="bi bi-check-circle text-success modalSize" ></i>
-          <p class="mt-3" id="addProdLeyend"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="paymentModalLabel">Pago Confirmado</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <i class="bi bi-check-circle text-success modalSize" ></i>
-          <p class="mt-3">¡Gracias por tu compra! Tu pago ha sido confirmado.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- Pie de página -->
-  <footer class="container-fluid">
-    <div class="container">
-      <p>&copy; 2024 Mi Tienda en Línea. Todos los derechos reservados.</p>
-      <p>
-        <a href="#">Política de privacidad</a> |
-        <a href="#">Términos de servicio</a> |
-        <a href="#">Contacto</a>
-      </p>
-    </div>
-  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./JS/app.js"></script>
+  <script src="./JS/inicioSesion.js"></script>
+  <script src="./JS/utils.js"></script>
 </body>
 
 </html>

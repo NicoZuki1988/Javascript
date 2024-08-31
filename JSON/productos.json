@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "nombre": "Apple iPhone 14",
+        "precio": 999.99,
+        "imageURL": "../images/iphone_14.webp"
+    },
+    {
+        "id": 2,
+        "nombre": "Samsung Galaxy S22",
+        "precio": 849.99,
+        "imageURL": "../images/samsung_galaxy_s22.webp"
+    },
+    {
+        "id": 3,
+        "nombre": "Sony WH-1000XM4",
+        "precio": 349.99,
+        "imageURL": "../images/auriculares_sony.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "MacBook Pro 16\"",
+        "precio": 2499.99,
+        "imageURL": "../images/macbook_pro16.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Dell XPS 13",
+        "precio": 1299.99,
+        "imageURL": "../images/dell_xps13.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "Google Pixel 7",
+        "precio": 699.99,
+        "imageURL": "../images/google_pixel7.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "Amazon Echo Dot 4th Gen",
+        "precio": 49.99,
+        "imageURL": "../images/amazon_echo_dot.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "Nintendo Switch",
+        "precio": 299.99,
+        "imageURL": "../images/nintendo_switch.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Bose QuietComfort 35 II",
+        "precio": 299.99,
+        "imageURL": "../images/bose_quietcomfort.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "Apple Watch Series 8",
+        "precio": 399.99,
+        "imageURL": "../images/apple_watch_series8.jpg"
+    }
+]
