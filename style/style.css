@@ -7,21 +7,24 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    padding-top: 70px;
+
 }
 
 header {
     background-color: #007bff;
     color: white;
     padding: 20px 0;
-    position: sticky;
-    top: 0px;
-    z-index: 100;
 }
 
 .cart-icon {
     font-size: 1.5rem;
     position: relative;
     margin-right: 15px;
+}
+
+.fixed-top {
+    z-index: 1030; /* Asegura que el header esté por encima de otros elementos */
 }
 
 .trash-icon {

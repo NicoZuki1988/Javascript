@@ -58,5 +58,71 @@
         "nombre": "Apple Watch Series 8",
         "precio": 399.99,
         "imageURL": "../images/apple_watch_series8.jpg"
+    },
+    {
+        "id": 11,
+        "nombre": "PlayStation 5",
+        "precio": 499.99,
+        "imageURL": "../images/playstation5.webp"
+    },
+    {
+        "id": 12,
+        "nombre": "Xbox Series X",
+        "precio": 499.99,
+        "imageURL": "../images/xboxseriesx.jpg"
+    },
+    {
+        "id": 13,
+        "nombre": "GoPro HERO9",
+        "precio": 399.99,
+        "imageURL": "../images/goprohero9.jpg"
+    },
+    {
+        "id": 14,
+        "nombre": "Canon EOS R5",
+        "precio": 3899.99,
+        "imageURL": "../images/canonER5.jpg"
+    },
+    {
+        "id": 15,
+        "nombre": "DJI Mavic Air 2",
+        "precio": 799.99,
+        "imageURL": "../images/dronDJMavicAir2.jpg"
+    },
+    {
+        "id": 16,
+        "nombre": "Samsung QLED TV 65\"",
+        "precio": 1299.99,
+        "imageURL": "../images/samsungQledTV65.webp"
+    },
+    {
+        "id": 17,
+        "nombre": "Logitech MX Master 3",
+        "precio": 99.99,
+        "imageURL": "../images/logitechMXMaster3.jpg"
+    },
+    {
+        "id": 18,
+        "nombre": "Razer BlackWidow V3",
+        "precio": 139.99,
+        "imageURL": "../images/razerBlackwidowV3.jpg"
+    },
+    {
+        "id": 19,
+        "nombre": "Apple iPad Pro 12.9\"",
+        "precio": 1099.99,
+        "imageURL": "../images/appleIpadPro.webp"
+    },
+    {
+        "id": 20,
+        "nombre": "Kindle Paperwhite",
+        "precio": 129.99,
+        "imageURL": "../images/kindlePaperwhite.webp"
+    },
+    {
+        "id": 21,
+        "nombre": "Fitbit Charge 5",
+        "precio": 149.99,
+        "imageURL": "../images/fitbitCharge5.jpg"
     }
 ]
