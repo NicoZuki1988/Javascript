@@ -24,7 +24,8 @@ header {
 }
 
 .fixed-top {
-    z-index: 1030; /* Asegura que el header esté por encima de otros elementos */
+    z-index: 1030;
+    /* Asegura que el header esté por encima de otros elementos */
 }
 
 .trash-icon {
@@ -79,7 +80,7 @@ header {
     height: 250px;
 }
 
-.modalSize{
+.modalSize {
     font-size: 4rem;
 }
 

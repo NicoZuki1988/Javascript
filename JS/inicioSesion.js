@@ -41,13 +41,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         passwordError.textContent = 'Usuario inexistente';
         isValid = false;
     }
-    else if (encryptPassword(password.value)!==usuario.password) {
+    else if (encryptPassword(password.value) !== usuario.password) {
         password.classList.add('is-invalid');
         passwordError.textContent = 'Contraseña incorrecta';
         isValid = false;
 
     }
-     else {
+    else {
         password.classList.remove('is-invalid');
         passwordError.textContent = '';
     }
@@ -55,7 +55,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     // Si el formulario no es válido, evitar el envío
     if (isValid) {
         window.location.href = "./pages/carrito.html";
-        // Guardar el objeto en localStorage
         localStorage.setItem('user', JSON.stringify(usuario));
     }
 });
@@ -74,6 +73,6 @@ async function usuarioInexistente(usuario) {
 
 function getUsuario(users, usuario) {
     const user = users.find(u => u.usuario === usuario);
-   return user;
+    return user;
 
 }
